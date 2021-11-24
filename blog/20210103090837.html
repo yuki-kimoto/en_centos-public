@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>ChromeDriverをインストールする - Cent OS 7 - CentOS Server Construction</title>
-<meta name="description" content="Google ChromeブラウザをSeleniumを使ってプログラムから自動制御するためのChromeDriverをインストールしましょう。ChromeDriverのバイナリを直接配置します。64bit版のLinuxであることを想定します。Cent OS 7で確認しています。">
+<title> Install Chrome Driver - Cent OS 7  - CentOS Server Construction</title>
+<meta name="description" content="Install the Chrome Driver to automatically control your Google Chrome browser programmatically using Selenium. Place the Chrome Driver binaries directly. It is assumed that it is a 64-bit version of Linux. Confirmed with Cent OS 7.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20210103090837.html">ChromeDriverをインストールする - Cent OS 7</a></h2>
+    <h2><a href="/blog/20210103090837.html"> Install Chrome Driver - Cent OS 7 </a></h2>
 <p>
-  Google ChromeブラウザをSeleniumを使ってプログラムから自動制御するためのChromeDriverをインストールしましょう。ChromeDriverのバイナリを直接配置します。64bit版のLinuxであることを想定します。Cent OS 7で確認しています。
+  Install the Chrome Driver to automatically control your Google Chrome browser programmatically using Selenium. Place the Chrome Driver binaries directly. It is assumed that it is a 64-bit version of Linux. Confirmed with Cent OS 7.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,13 +80,13 @@
 google-chrome --version
 </pre>
 <p>
-  バージョン。
+  version.
 </p>
 <pre>
 Google Chrome 87.0.4280.88
 </pre>
 <p>
-  ChromeDriverをインストールしましょう。
+  Install the Chrome Driver.
 </p>
 <pre>
 cd /usr/local/src
@@ -95,30 +95,30 @@ unzip chromedriver_linux64.zip
 mv chromedriver /usr/local/bin/
 </pre>
 <p>
-  ChromeDriverのバージョン確認。
+  Check the version of Chrome Driver.
 </p>
 <pre>
 chromedriver --version
 </pre>
 <p>
-  バージョンの出力結果。
+  The output result of the version.
 </p>
 <pre>
 ChromeDriver 86.0.4240.22 (398b0743353ff36fb1b82468f63a3a93b4e2e89e-refs/branch-heads/4240@{#378})
 </pre>
 <p>
-  不具合がある場合は、Google ChromeとChromeDriverのバージョンをWeb上で検索して、確認してください。
+  If there is a problem, please search the web for the version of Google Chrome and Chrome Driver to check.
 </p>
-<h3>Google Chromeのインストール</h3>
+<h3> Install Google Chrome </h3>
 <p>
-  ChromeDriverはGoogle Chromeブラウザをプログラムから自動実行するために必要になるものです。Google ChromeのCentOSへのインストールは、以下で解説しています。
+  The Chrome Driver is required to automatically run the Google Chrome browser programmatically. Installation of Google Chrome on CentOS is explained below.
 </p>
 <ul>
-  <li><a href="/blog/20210104090837.html">Google Chromeのインストール</a></li>
+  <li> <a href="/blog/20210104090837.html"> Install Google Chrome</a> </li>
 </ul>
-<h3>JavaScript対応のWebスクレイピングをプログラムから行うには?</h3>
+<h3> How to programmatically perform JavaScript-compatible web scraping? </H3>
 <p>
-  JavaScript対応のWebスクレイピングをプログラムから行うには、プログラミング言語で提供されているSeleniumライブラリが必要です。Perl - <a href="https://perlzemi.com/blog/20210105145700.html">Selenium::Remote::Driver</a>、PHP、Pyhton、RubyなどのSeleniumライブラリがあります。
+  To programmatically perform JavaScript-enabled web scraping, you need the Selenium library provided by the programming language. Perl-<a href="https://perlzemi.com/blog/20210105145700.html"> Selenium :: Remote :: Driver</a>, PHP, Pyhton, Ruby and other Selenium libraries.
 </p>
 
   </div>
