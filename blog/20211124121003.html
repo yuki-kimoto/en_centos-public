@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>redisのインストール - Redisサーバー 揮発性データの高速保存とPub/Sub - CentOS Server Construction</title>
-<meta name="description" content="CentOSの標準パッケージのリポジトリにはRedisサーバーが含まれていないので、エンタープライズ Linux 用の拡張パッケージ(EPEL)リポジトリをインストールします。">
+<title>Install Fonts - CentOS Server Construction</title>
+<meta name="description" content="I explain the way to install fonts. You can intall fonts using yum command as follows. This is examples of Japanese fonts. You need to search for the fonts you need by yourself using search engines, etc. I tried this article on CentOS 7.">
   </head>
   <body>
     <div class="container">
@@ -56,28 +56,9 @@
     
   </div>
   <div class="middle">
-    <div class="bread">
-  <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-      <a itemprop="item" href="/">
-        <span itemprop="name">CentOS</span>
-      </a>
-      <meta itemprop="position" content="1" />
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-      <a itemprop="item" href="/blog/20200529085516.html">
-        <span itemprop="name">パッケージ管理</span>
-      </a>
-      <meta itemprop="position" content="2" />
-    </li>
-    <li>
-      here
-    </li>
-  </ul>
-</div>
-<h2><a href="/blog/20200525135533.html">redisのインストール - Redisサーバー 揮発性データの高速保存とPub/Sub</a></h2>
+    <h2><a href="/blog/20211124121003.html">Install Fonts</a></h2>
 <p>
-  CentOSの標準パッケージのリポジトリにはRedisサーバーが含まれていないので、エンタープライズ Linux 用の拡張パッケージ(EPEL)リポジトリをインストールします。
+  I explain the way to install fonts. You can intall fonts using yum command as follows. This is examples of Japanese fonts. You need to search for the fonts you need by yourself using search engines, etc. I tried this article on CentOS 7.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -96,64 +77,46 @@
 
 
 <pre>
-sudo yum -y install epel-release
+# Install Fonts
+yum -y install ipa-gothic-fonts
+yum -y install ipa-pgothic-fonts
+yum -y install ipa-mincho-fonts
+yum -y install ipa-pmincho-fonts
 </pre>
 <p>
-  Redisサーバーをインストールするにはredisパッケージをインストールします。
+  The fonts is installed on <b>/usr/share/fonts</b> directory. You can see the fonts using <b>find</b> command.
 </p>
 <pre>
-sudo yum -y install redis
+# Find founts
+find /usr/share/fonts
 </pre>
-<h4>Redisサーバーがインストールされたことの確認</h4>
 <p>
-  Redisサーバーがインストールされたことをsystemctlのstatusコマンドで確認してみましょう。
+  You can see the fonts you want to see using <b>grep</b> command with <b>find</b> command.
 </p>
 <pre>
-sudo systemctl status redis
+# See the fonts you want to see
+find /usr/share/fonts | grep ipa
 </pre>
 <p>
-  起動するには以下のコマンドを実行します。
+  An example of the output:
 </p>
 <pre>
-sudo systemctl start redis
+/usr/share/fonts/ipa-gothic
+/usr/share/fonts/ipa-gothic/ipag.ttf
+/usr/share/fonts/ipa-gothic/.uuid
+/usr/share/fonts/ipa-pgothic
+/usr/share/fonts/ipa-pgothic/ipagp.ttf
+/usr/share/fonts/ipa-pgothic/.uuid
+/usr/share/fonts/ipa-mincho
+/usr/share/fonts/ipa-mincho/ipam.ttf
+/usr/share/fonts/ipa-mincho/.uuid
+/usr/share/fonts/ipa-pmincho
+/usr/share/fonts/ipa-pmincho/ipamp.ttf
+/usr/share/fonts/ipa-pmincho/.uuid
 </pre>
-<h3>Redisクライアント - redis-cli</h4>
 <p>
-  RedisサーバーをインストールするとRedisコマンドを実行できるredis-cliというコマンドラインアプリケーションもインストールされます。
+  The files which have the extension ".ttf" are font files.
 </p>
-<ul>
-  <li><a href="/blog/20200720125704.html">redis-cli - RedisクライアントからRedisコマンドを実行する</a></li>
-</ul>
-<h3>Redisサーバーの用途</h3>
-<p>
-  Redisサーバーには主に二つの用途があります。
-</p>
-<h4>揮発性データの高速保存</h4>
-<p>
-  Redisサーバーは、揮発性データを高速に保存できます。
-</p>
-<p>
-  揮発性データというのは、一時的で消去が予定されているデータです。
-</p>
-<p>
-  セッション情報は、一定期間で消しますし、もし消えたとしても、ユーザーにログイン画面からやりなおしてもらうだけです。セッション情報は、揮発性のデータといえます。
-</p>
-<p>
-  またセッションは、HTTPリクエストのたびに取得しないといけないので、<a href="https://mariadb.perlclub.net/">MariaDB</a>のようなリレーショナルデータベースよりもRedisが、パフォーマンスがよいです。
-</p>
-<h4>Pub/Subによるpush通知</h4>
-<p>
-  Redisは、Pub/Subと呼ばれるpush通知の仕組みを持っているので、リアルタイムチャット、リアルタイム更新、という分野の実装を比較的簡単に行うことができます。
-</p>
-<p>
-  Redisは、Web APIを持っているので、Webフレームワークがノンブロッキング対応している場合は、ノンブロッキングのHTTPリクエストでRedisにアクセスできます。
-</p>
-<p>
-  Mojolicious、WebSocket、Redisを使ったリアルタイムチャットのサンプルについては、以下を参考にしてください。
-</p>
-<ul>
-  <li><a href="https://en.mojolicious.perlzemi.com/blog/20100403127089.html">Mojolicious、WebSocket、Redisを使ったリアルタイムチャットのサンプル</a>
-</ul>
 
   </div>
   <div class="bottom">

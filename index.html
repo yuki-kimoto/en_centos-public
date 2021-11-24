@@ -36,19 +36,16 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>CentOS+Perl Webシステム開発環境構築入門</title>
-<meta name="description" content="CentOS開発環境構築は、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。">
+<title>CentOS Server Construction</title>
+<meta name="description" content="CentOS Development Environment Construction  introduces the procedure for building a Web system development environment using Perl using CentOS. The ability to build scalable, real-time web-enabled web applications on Linux virtual machines is a feature of Perl web system development.">
   </head>
   <body>
     <div class="container">
       <div class="header">
         <div class="header_main">
   <h1>
-    <a href="/"><img src="/images/logo.png">CentOS開発環境構築</a>
+    <a href="/"><img src="/images/logo.png">CentOS Server Construction</a>
   </h1>
-  <div class="header_right">
-    <a rel="nofollow" href="https://perlclub.net/account/create">会員登録</a>
-  </div>
 </div>
 
       </div>
@@ -59,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/">CentOS開発環境構築  - Perl Web開発環境構築</a></h2>
+    <h2><a href="/"> CentOS Server Construction</a></h2>
 <p>
-  <b>CentOS開発環境構築</b>は、CentOSを使って、PerlによるWebシステム開発環境を構築するための手順を紹介します。Linux仮想マシン上に、スケーラブルで、リアルタイムWeb対応のWebアプリケーションを比較的簡単に構築できることは、Perl Webシステム開発の特徴です。
+  <b> CentOS Development Environment Construction </b> introduces the procedure for building a Web system development environment using Perl using CentOS. The ability to build scalable, real-time web-enabled web applications on Linux virtual machines is a feature of Perl web system development.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,76 +77,77 @@
 
 
 <p>
-  CentOS上にWebサーバーを構築、PerlのWebアプリケーションを作って、Webサーバーからリバースプロキシでつなぐ設定して、外部へ公開できるところまでを解説します。
+  I will explain how to build a web server on CentOS, create a Perl web application, set up to connect from the web server with a reverse proxy, and publish it to the outside.
 </p>
 <p>
-  2020年7月29日現在、CentOSのバージョンは、CentOS 7で確認していますが、特別な注記がない限り、CentOS 8でも、動作すると想定しています。
+  As of July 29, 2020, the version of CentOS has been confirmed on CentOS 7, but unless otherwise specified, it is assumed that it will also work on CentOS 8.
 </p>
-<h3>パッケージ管理</h3>
+<h3> Package management </h3>
 <ul>
-  <li><a href="/blog/20200529085516.html">CentOSにおけるパッケージ管理</a></li>
+  <li> <a href="/blog/20200529085516.html"> Package management on CentOS</a> </li>
 </ul>
-<h3>Redisサーバー - 揮発性データ保存サーバー</h3>
+<h3> Redis Server-Volatile Data Storage Server </h3>
 <ul>
-  <li><a href="/blog/20200225174004.html">Redisサーバーの起動・停止・再起動・状態確認</a></li>
-  <li><a href="/blog/20200720125704.html">redis-cli - RedisクライアントからRedisコマンドを実行する</a></li>
+  <li> <a href="/blog/20200225174004.html"> Redis server start / stop / restart / status check</a> </li>
+  <li> <a href="/blog/20200720125704.html"> redis-cli  - Run Redis command from Redis client</a> </li>
 </ul>
-<h3>OSアップデート</h3>
+<h3> OS update </h3>
 <ul>
-  <li><a href="/blog/20200204080644.html">CentOSのマイナーバージョンをアップデートする - CentOS7, CentOS8</a></li>
+  <li> <a href="/blog/20200204080644.html"> Update the minor version of CentOS  - CentOS7, CentOS8</a> </li>
 </ul>
-<h3>アプリケーションとライブラリのインストール</h3>
+<h3> Application and library installation </h3>
 <ul>
-  <li><a href="/blog/20200210101036.html">ImageMagickをインストールする - CentOS7, CentOS8</a></li>
+  <li> <a href="/blog/20200210101036.html"> Install ImageMagick  - CentOS7, CentOS8</a> </li>
 </ul>
-<h3>フォント</h3>
+<h3> Font </h3>
 <ul>
-  <li><a href="/blog/20200317114157.html">フォントファイルのディレクトリ - CentOS7, CentOS8</a></li>
+  <li> <a href="/blog/20211124121003.html">Install Fonts</a> </li>
+  <li> <a href="/blog/20200317114157.html"> Font file directory  - CentOS7, CentOS8</a> </li>
 </ul>
-<h3>Apache - Webサーバー</h3>
+<h3> Apache  - Web server </h3>
 <ul>
-  <li><a href="/blog/20200115175810.html">Apacheのインストールと起動・停止・自動起動の設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいか確認する - CentOS 7</a></li>
-  <li><a href="/blog/20200130120019.html">Apacheのリバースプロキシの設定 - CentOS 7</a></li>
-  <li><a href="/blog/20200112182708.html">ApacheでHTTPS接続のためにmod_sslをインストールする - CentOS 7</a></li>
-  <li><a href="/blog/20200117182708.html">Let's encryptを使って、SSL証明書を取得する - CentOS 7</a></li>
-  <li><a href="/blog/20200203102632.html">apacheを再起動する - CentOS 7</a></li>
-  <li><a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a></li>
-  <li><a href="/blog/20200203120019.html">apacheのアクセスログの場所 - CentOS 7</a></li>
-  <li><a href="/blog/20200131120019.html">apacheのエラーログの場所 - CentOS 7</a></li>
-  <li><a href="/blog/20200128102632.html">Apacheの起動・再起動・停止をログで確認する - CentOS 7</a></li>
-  <li><a href="/blog/20200127102632.html">Apacheの設定ファイルをテストする - CentOS 7</a></li>
-  <li><a href="/blog/20200126080644.html">ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7</a></li>
-  <li><a href="/blog/20200116182708.html">htpasswd - Apacheベーシック認証のパスワードファイルの作成 - CentOS 7</a></li>
+  <li> <a href="/blog/20200115175810.html"> Apache installation and start / stop / auto start settings  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200114175810.html"> Check if the Apache configuration file is correct  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200130120019.html"> Apache reverse proxy settings  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200112182708.html"> Install mod_ssl for HTTPS connection with Apache  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200117182708.html"> Use Let's encrypt to get an SSL certificate  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200203102632.html"> Restart apache  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200202102632.html"> Edit the apache configuration file  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200203120019.html"> Apache access log location  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200131120019.html"> Apache error log location  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200128102632.html"> Check the start / restart / stop of Apache in the log  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200127102632.html"> Test Apache config file  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200126080644.html"> Combining IP and basic authentication with Apache  - CentOS 7</a> </li>
+  <li> <a href="/blog/20200116182708.html"> htpasswd  - Creating a password file for Apache basic authentication  - CentOS 7</a> </li>
 </ul>
-<h3>更新情報</h3>
+<h3> Update information </h3>
 <ul>
-  <li><a href="/list.html">新着記事</a></li>
-  <li><a href="https://twitter.com/hashtag/Perl%E3%82%AF%E3%83%A9%E3%83%96%E6%9B%B4%E6%96%B0%E6%83%85%E5%A0%B1">更新情報</a></li>
+  <li> <a href="/list.html"> New articles</a> </li>
+  <li> <a href="https://twitter.com/hashtag/Perl%E3%82%AF%E3%83%A9%E3%83%96%E6%9B%B4%E6%96%B0% E6% 83% 85% E5% A0% B1 "> Updates</a> </li>
 </ul>
-<h3>CentOS関連情報</h3>
+<h3> CentOS related information </h3>
 <p>
-  CentOSに関連する情報です。
+  Information related to CentOS.
 </p>
-<h4>Linuxサーバー管理</h4>
+<h4> Linux server management </h4>
 <p>
-  viテキストエディタや基本的なLinuxコマンド、Linuxの仕組みについて学びたい方はこちら。
+  Click here to learn about the vi text editor, basic Linux commands, and how Linux works.
 </p>
 <ul>
-  <li><a href="https://linux.perlclub.net/">Linuxサーバー管理入門</a></li>
+  <li> <a href="https://linux.perlclub.net/"> Introduction to Linux Server Management</a> </li>
 </ul>
-<h4>Linuxディストリビューション</h4>
+<h4> Linux distribution </h4>
 <p>
-  CentOSと比較できるLinuxディストリビューションとしては、<a href="https://ubuntu.perlzemi.com/">Ubuntu</a>、<a href="https://ja.wikipedia.org/wiki/Fedora">Fedora</a>、<a href="https://ja.wikipedia.org/wiki/Debian">Debian</a>、<a href="https://ja.wikipedia.org/wiki/Rocky_Linux">Rocky Linux</a>、<a href="https://ja.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise Linux</a>などがあります。
+  Linux distributions that can be compared to CentOS include <a href="https://ubuntu.perlzemi.com/"> Ubuntu</a> and <a href="https://ja.wikipedia.org/wiki/". Fedora "> Fedora</a>, <a href="https://ja.wikipedia.org/wiki/Debian"> Debian</a>, <a href="https://ja.wikipedia.org/ wiki / Rocky_Linux "> Rocky Linux</a>, <a href="https://ja.wikipedia.org/wiki/Red_Hat_Enterprise_Linux"> Red Hat Enterprise Linux</a>.
 </p>
-<h4>スクリプト言語</h4>
+<h4> Scripting language </h4>
 <p>
-  CentOSのサーバー管理で利用できるスクリプト言語には、<a href="https://perlzemi.com/">Perl</a>、<a href="https://ja.wikipedia.org/wiki/Python">Python</a>、<a href="https://ja.wikipedia.org/wiki/Ruby">Ruby</a>などがあります。
+  Scripting languages ​​available for CentOS server management include <a href="https://perlzemi.com/"> Perl</a> and <a href="https://ja.wikipedia.org/wiki/". There are Python "> Python</a>, <a href="https://ja.wikipedia.org/wiki/Ruby"> Ruby</a> and so on.
 </p>
 
   </div>
   <div class="bottom">
-    <h3>関連情報</h3>
+    <h3>Associated Information</h3>
 
 <div style="margin:10px 0">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -201,7 +199,7 @@
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perlクラブ</a>
+  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
 </div>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
