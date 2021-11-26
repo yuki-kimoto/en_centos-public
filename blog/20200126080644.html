@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="ApacheでIP認証とベーシック認証を組み合わせる方法の解説です。">
+<title>Combining IP Authentication and Basic Authentication in Apache - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="This article explains how to combine IP authentication and basic authentication in Apache.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200126080644.html">ApacheでIP認証とベーシック認証を組み合わせる - CentOS 7</a></h2>
+    <h2><a href="/blog/20200126080644.html">Combining IP Authentication and Basic Authentication in Apache - CentOS 7</a></h2
 <p>
-  ApacheでIP認証とベーシック認証を組み合わせる方法の解説です。
+  This article explains how to combine IP authentication and basic authentication in Apache.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -77,26 +77,26 @@
 
 
 <p>
-  たとえば、社内からのアクセスであれば認証がなし、社外からのアクセスでは、パスワードを必要にしたいとします。
+  For example, let's say you want to require no authentication for internal access, but a password for external access.
 </p>
 <p>
-  社内からのアクセスはグローバルIPアドレスで制御できます。
+  Access from inside the company can be controlled by the global IP address.
 </p>
 <p>
-  パスワードが必要な場合はベーシック認証が使えます。セキュリティのために接続はHTTPS接続で行うようにしましょう。
+  If a password is required, basic authentication can be used. For security purposes, the connection should be an HTTPS connection.
 </p>
 <p>
-  バーチャルホストを使っている場合は、それぞれのバーチャルホストのディレクティブの中に書きます。
+  If you are using virtual hosts, put this in the directive for each virtual host.
 </p>
 <p>
-  リバースプロキシを使っている場合は、Proxyディレクティブの中に書きます。元のアクセス制限の設定は削除しても大丈夫です。
+  If you are using a reverse proxy, put it in the Proxy directive. You can remove the original access restriction settings.
 </p>
 <pre>
   &lt;RequireAny&gt;
-    # IP認証
+    # IP Authentication
     Require ip 192.168.10.10
     
-    # ベーシック認証
+    # Basic authentication
     AuthType Basic
     AuthName "Secret Zone"
     AuthUserFile /var/www/.htpasswd
@@ -104,7 +104,7 @@
   &lt;/RequireAny&gt;
 </pre>
 <p>
-  RequireAnyは、いずれかが成功した場合は、認証が成功します。IP認証が成功するか、あるいはベーシック認証が成功した場合に、認証が成功します。
+  RequireAny will result in successful authentication if any of the following succeeds: IP authentication succeeds, or Basic authentication succeeds.
 </p>
 
   </div>
@@ -161,12 +161,9 @@
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

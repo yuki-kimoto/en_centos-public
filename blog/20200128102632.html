@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Apacheの起動・再起動・停止をログで確認する - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。">
+<title>Checking the Logs for Starting, Restarting, and Stopping Apache - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="To check the logs of starting, restarting and stopping Apache, narrow down the logs displayed by the journalctl command to only Apache logs by using "-u httpd".">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200128102632.html">Apacheの起動・再起動・停止をログで確認する - CentOS 7</a></h2>
+    <h2><a href="/blog/20200128102632.html">Checking the Logs for Starting, Restarting, and Stopping Apache - CentOS 7</a></h2
 <p>
-  Apacheの起動・再起動・停止をログで確認するにはjournalctlコマンドで表示されるログを「-u httpd」で、Apacheのログだけに絞り込みます。
+  To check the logs of starting, restarting and stopping Apache, narrow down the logs displayed by the journalctl command to only Apache logs by using "-u httpd".
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,25 +80,26 @@
 journalctl -u httpd
 </pre>
 <p>
-  出力結果のサンプルです。
+  Here is a sample of the output
 </p>
 <pre>
+journalctl -u httpd
 eb 03 14:54:56 vs01 systemd[1]: Reloaded The Apache HTTP Server.
 Feb 03 14:56:44 vs01 systemd[1]: Stopping The Apache HTTP Server...
 Feb 03 14:57:02 vs01 systemd[1]: Starting The Apache HTTP Server...
-Feb 03 14:57:03 vs01 systemd[1]: Started The Apache HTTP Server.
+Feb 03 14:57:03 vs01 systemd[1]: Started The Apache HTTP Server...
 Feb 03 15:00:03 vs01 systemd[1]: Reloaded The Apache HTTP Server.
 </pre>
-<h3>末尾から表示する</h3>
+<h3>View from the end</h3>
 <p>
-  Apacheの起動・再起動・停止をログを逆順で末尾から表示するには「-r」オプションを使用します。
+  Use the "-r" option to display the logs of starting, restarting and stopping Apache in reverse order, starting from the end.
 </p>
 <pre>
 journalctl -r -u httpd
 </pre>
-<h3>末尾を自動で取得</h3>
+<h3>Automatically retrieve the tail</h3>
 <p>
-  ログの末尾を自動で取得し<a href="https://linux.perlclub.net/blog/20200203124238.html">tailコマンド</a>の「-f」オプションのような動作をさせるには「-f」オプションを使用します。
+  Use the "-f" option to automatically retrieve the end of the log and make it behave like the "-f" option of the <a href="https://linux.perlclub.net/blog/20200203124238.html">tail command</a>.
 </p>
 <pre>
 journalctl -f -u httpd
@@ -158,12 +159,9 @@ journalctl -f -u httpd
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

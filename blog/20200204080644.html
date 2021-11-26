@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>CentOSのマイナーバージョンをアップデートする - CentOS 7, Cent OS 8 - CentOS Server Construction</title>
-<meta name="description" content="CentOSのマイナーバージョンをアップグレードするには「yum update」を使います。">
+<title>Updating a minor version of CentOS - CentOS 7, Cent OS 8 - CentOS Server Construction</title>
+<meta name="description" content="To upgrade a minor version of CentOS, use "yum update".">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200204080644.html">CentOSのマイナーバージョンをアップデートする - CentOS 7, Cent OS 8</a></h2>
+    <h2><a href="/blog/20200204080644.html">Updating a minor version of CentOS - CentOS 7, Cent OS 8</a></h2>
 <p>
-  CentOSのマイナーバージョンをアップグレードするには「yum update」を使います。
+  To upgrade a minor version of CentOS, use "yum update".
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,57 +80,57 @@
 sudo yum update
 </pre>
 <p>
-  CentOSが、最新のマイナーバージョンに更新されます。
+  CentOS will be updated to the latest minor version.
 </p>
 <p>
-  カーネルを含めてCentOSのすべての依存しているすべてのパッケージが最新のものになります。
+  All dependent packages of CentOS, including the kernel, will be up to date.
 </p>
-<h3>本番環境のアップデートは開発環境で試してから</h3>
+<h3>Try updating the production environment in the development environment first</h3>
 <p>
-  本番環境のアップデートをいきなり行うと、環境が壊れて大変なことになります。
+  If you update your production environment out of the blue, it will break your environment and cause a lot of trouble.
 </p>
 <p>
-  まず最初に、開発環境で、環境をアップデートして、重要なアプリケーションが動くことを確認してください。
+  First of all, update your environment in the development environment to make sure it works for your critical applications.
 </p>
 <pre>
-# Apacheの再起動
+# Restart Apache
 sudo systemctl reload httpd
 
-# Apacheの再起動の確認
+# Check that Apache is restarted
 sudo systemctl status httpd
 
-# Mariadbの再起動
+# Restart Mariadb
 sudo systemctl restart mariadb
 
-# Mariadbの再起動の確認
+# Check if Mariadb is restarted
 sudo systemctl status mariadb
 
-# Postfixの再起動
+# Restart Postfix
 systemctl restart postfix
 
-# Postfixの確認
+# Check Postfix
 systemctl status postfix
 
-# Webアプリケーションの再起動
+# Restart a web application
 hypnotoad myapp.pl
 </pre>
 <p>
-  開発環境で正しく動くことを確認したら、本番環境で実行です。
+  After confirming that it works correctly in the development environment, run it in the production environment.
 </p>
-<h3>Apacheの起動に失敗しました</h3>
+<h3>Apache failed to start</h3>
 <p>
-  Apacheのバージョンがアップグレードされて、設定ファイルの互換性がない部分で、エラーが出ている可能性があります。
+  It is possible that the Apache version has been upgraded and the incompatible part of the configuration file is causing the error.
 </p>
 <p>
-  Apacheのステータスを確認してみましょう。
+  Let's check the status of Apache.
 </p>
 <pre>
 systemctl status httpd
 </pre>
 <p>
-  エラーのサンプルです。
+  Here is a sample of the error
 </p>
-<pre>
+<pre> systemctl status httpd
 Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: Starting The Apache HTTP Server...
 Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp httpd[21879]: AH00526: Syntax error on line 16 of /etc/httpd/conf.d/autoindex.conf:
 Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp httpd[21879]: Invalid command 'IndexOptions', perhaps misspelled or defined by a module not included in the server configuration
@@ -142,10 +142,10 @@ Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: Unit httpd.service ent
 Feb 04 08:13:28 tk2-261-xxxxx.vs.sakura.ne.jp systemd[1]: httpd.service failed.
 </pre>
 <p>
-  なんでしょうね「/etc/httpd/conf.d/autoindex.conf」って。Aapcheがバージョンアップされて、勝手に違う設定ファイルが読み込まれているのかな?
+  I wonder what's going on with "/etc/httpd/conf.d/autoindex.conf", maybe Aapche was upgraded and a different configuration file was loaded without my permission?
 </p>
 <p>
-  こんなエラーも。
+  I also got this error
 </p>
 <pre>
 Feb 04 08:42:55 vs01 systemd[1]: Starting The Apache HTTP Server...
@@ -159,22 +159,22 @@ Feb 04 08:42:55 vs01 systemd[1]: Unit httpd.service entered failed state.
 Feb 04 08:42:55 vs01 systemd[1]: httpd.service failed.
 </pre>
 <p>
-  あれ、443ポートがすでにバインドされている??? もしや、デフォルトのssl.confが勝手に読み込まれてしまっている?
+  Oh, port 443 is already bound? What if the default ssl.conf has been loaded by itself?
 </p>
 <p>
-  こういうことがあるので、まず最初に開発環境で試してから、本番環境もアップデートしましょう。
+  This can happen, so try it in the development environment first, and then update the production environment.
 </p>
-<h3>CentOSのバージョンの確認</h3>
+<h3>Checking the version of CentOS</h3>
 <p>
-  以下のコマンドで、最新版にアップデートされているか確認してみましょう。
+  Use the following command to check if you have updated to the latest version.
 </p>
 <pre>
 cat /etc/redhat-release
 </pre>
 <p>
-  最新版になっていますね。
+  You are now on the latest version.
 </p>
-<pre>
+<pre> cat /etc/redhat-release
 CentOS Linux release 7.7.1908 (Core)
 </pre>
 
@@ -232,12 +232,9 @@ CentOS Linux release 7.7.1908 (Core)
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

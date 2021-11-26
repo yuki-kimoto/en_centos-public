@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Let's encryptを使って、SSL証明書を取得する - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="HTTPS対応するために、無料でSSL証明書を取得できるLet's enryptを利用するためのcertbotをインストールしましょう。">
+<title>Using Let's encrypt to get an SSL certificate - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="To support HTTPS, let's install certbot to use Let's encrypt, which allows you to get an SSL certificate for free.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200117182708.html">Let's encryptを使って、SSL証明書を取得する - CentOS 7</a></h2>
+    <h2><a href="/blog/20200117182708.html">Using Let's encrypt to get an SSL certificate - CentOS 7</a></h2>
 <p>
-  HTTPS対応するために、無料でSSL証明書を取得できるLet's enryptを利用するためのcertbotをインストールしましょう。
+  To support HTTPS, let's install certbot to use Let's encrypt, which allows you to get an SSL certificate for free.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,48 +80,48 @@
 sudo yum -y install epel-release
 sudo yum -y install certbot python-certbot-apache
 </pre>
-<h3>Let's encryptは証明書の取得にWebサーバーが必要</h3>
+<h3>Let's encrypt requires a web server to obtain a certificate</h3>
 <p>
-  Let's encryptは、HTTP接続できるWebサーバーにアクセスできることを確認することによって、SSL証明書を発行します。
+  Let's encrypt issues SSL certificates by verifying that you have access to a web server with an HTTP connection.
 </p>
 <p>
-  ですので、HTTPで待ち受けるWebサーバーが必要です。
+  Therefore, you need a web server to listen for HTTP connections.
 </p>
 <p>
-  Webサーバーとして<a href="/blog/20200115175810.html">Aapcheのインストール</a>を行いましょう。
+  Install <a href="/blog/20200115175810.html">Aapche</a> as your web server.
 </p>
 <p>
-  HTTPS接続のためには、mod_sslが必要ですので、<a href="/blog/20200112182708.html">mod_ssl</a>のインストールを行いましょう。
+  For HTTPS connection, mod_ssl is required, so install <a href="/blog/20200112182708.html">mod_ssl</a>.
 </p>
 <p>
-  よくあるサーバーの構成として、リバースプロキシで待ち受ける場合を考えてみましょう。
+  As a common server configuration, let's consider the case where a reverse proxy is used to listen.
 </p>
 <p>
-  「/etc/httpd/conf.d/vhost.conf」の中に以下のような設定をします。HTTPのデフォルトポート80で「www.mydomain.example」を受けて、後ろにあるアプリケーションサーバーの10000番ポートで受けます。
+  Set up the following in /etc/httpd/conf.d/vhost.conf to receive "www.mydomain.example" on the default port 80 of HTTP, and then on port 10000 of the application server behind it.
 </p>
 <pre>
-  &lt;VirtualHost *:80&gt;
+  &lt;VirtualHost *:80
     ServerName www.mydomain.example
     
     &lt;Proxy *&gt;
       Require all granted
-    &lt;/Proxy&gt;
+    &lt;/Proxy
 
     ProxyRequests Off
     ProxyPreserveHost On
     ProxyPass / http://localhost:10000/ keepalive=On
     ProxyPassReverse / http://localhost:10000/
     RequestHeader set X-Forwarded-Proto "https"
-  &lt;/VirtualHost&gt;
+  &lt;/VirtualHost
 </pre>
 <p>
-  SSL証明書の読み込みの設定は、存在しないので、この時点では行いません。
+  We will not configure the settings for loading the SSL certificate at this point, as it does not exist.
 </p>
 <p>
-  設定後<a href="/blog/20200115175810.html">Apacheを再起動</a>して「http://www.mydomain.example」で、接続できることを確認してください。再起動の前には、<a href="/blog/20200114175810.html">Apacheの設定ファイルが正しいことをチェック</a>しておくと安心でしょう。
+  After configuring the settings, <a href="/blog/20200115175810.html">restart Apache</a> and go to "http://www.mydomain.example" and make sure you can connect. Before restarting, it is a good idea to <a href="/blog/20200114175810.html">check</a> that the Apache configuration file is correct.
 </p>
 <p>
-  リバースプロキシで、Webアプリケーションに接続しているの、Mojoliciousでサーバーを起動する簡単な例です。
+  Here is a simple example of starting a server with Mojolicious, which is a reverse proxy and connects to a web application.
 </p>
 <pre>
 # myapp.pl
@@ -130,104 +130,107 @@ use Mojolicious::Lite;
 app-&gt;start;
 </pre>
 <p>
-  起動
+  Launch
 </p>
 <pre>
 hypnotoad myapp.pl
 </pre>
 <p>
-  <a href="https://en.webapp.perlzemi.com/">Mojolicious</a>のhypnotoadサーバーのデフォルトのポートは10000ですが、ポート番号を指定したい場合は「hypnotoad.conf」を編集します。
+  The default port for the <a href="https://en.webapp.perlzemi.com/">Mojolicious</a> hypnotoad server is 10000, but if you want to specify the port number, edit "hypnotoad.conf".
 </p>
-<h3>SSL証明書を取得する</h3>
+<h3>Obtain an SSL certificate</h3>
 <p>
-  certbotを使って、SSL証明書を取得しましょう。Apache用のHTTPS接続のための設定も自動で追加してくれます。
+  Let's use certbot to get an SSL certificate, and it will automatically add the configuration for HTTPS connection for Apache.
 </p>
 <pre>
 sudo certbot run --apache -d www.mydomain.example
 </pre>
 <p>
-  最初にメールアドレスを聞かれます。メールアドレスを入力して、Enter。
+  You will be asked for your email address first. Type in your email address and Enter.
 </p>
 <pre>
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator apache, Installer apache
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
-cancel):
+Enter 'c' to cancel):
 </pre>
 <p>
-  次に同意をするか聞かれるので「A」を押してEnter。
+  Next, you will be asked if you agree to the terms of the agreement, press 'A' and enter.
 </p>
 <pre>
 Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org
 
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 Please read the Terms of Service at
 https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
 agree in order to register with the ACME server at
 https://acme-v02.api.letsencrypt.org/directory
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- You must agree in order to register with the ACME server at .
 (A)gree/(C)ancel:
 </pre>
 <p>
-  メールアドレスをElectronic Frontier Foundationと共有したいか聞かれるので「Y」か「N」を押してEnter。
+  When you are asked if you want to share your email address with the Electronic Frontier Foundation, press "Y" or "N" and enter.
 </p>
 <pre>
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Would you be willing to share your email address with the Electronic Frontier
-Foundation, a founding partner of the Let's Encrypt project and the non-profit
-organization that develops Certbot? We'd like to send you email about our work
-encrypting the web, EFF news, campaigns, and ways to support digital freedom.
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Would you be willing to share your email address with the Electronic Frontier Foundation, a founding partner of the Let
+Would you be willing to share your email address with the Electronic Frontier Foundation, a founding partner of the Let's Encrypt project and the non-profit organization that develops Certbot?
+We'd like to send you an email about our work
+We'd like to send you an email about our work encrypting the web, EFF news, campaigns, and ways to support digital freedom.
+- We'd like to send you emails about our work encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o:
 </pre>
 <p>
-  HTTPをHTTPSにリダイレクトするか聞かれるので、「1」のリダイレクトを選びましょう。
+  You will be asked if you want to redirect HTTP to HTTPS, so choose the "1" redirect.
 </p>
 <pre>
 Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- &lt;pre&gt; Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.
 1: No redirect - Make no further changes to the webserver configuration.
-2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for
-new sites, or if you're confident your site works on HTTPS. You can undo this
-change by editing your web server's configuration.
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+2: Redirect - Make all requests redirect to secure HTTPS access.
+You can undo this change by editing your web server's configuration.
+You can undo this change by editing your web server's configuration.
+- You can undo this change by editing your web server's configuration.
 Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
 </pre>
 <p>
-  最後に重要なお知らせが表示されて、終了します。
+  Finally, an important notice will be displayed and the process will end.
 </p>
 <pre>
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/quote-app.dev-winckler-yokohama.com/fullchain.pem
    Your key file has been saved at:
-   /etc/letsencrypt/live/quote-app.dev-winckler-yokohama.com/privkey.pem
+   Your key file has been saved at: /etc/letsencrypt/live/quote-app.dev-winckler-yokohama.com/privkey.pem
    Your cert will expire on 2020-04-16. To obtain a new or tweaked
-   version of this certificate in the future, simply run certbot again
-   with the "certonly" option. To non-interactively renew *all* of
-   your certificates, run "certbot renew"
+   To obtain a new or tweaked version of this certificate in the future, simply run certbot again
+   To non-interactively renew *all* of your certificates, run "certbot again.
+   To non-interactively renew *all* of your certificates, run "certbot renew".
  - Your account credentials have been saved in your Certbot
-   configuration directory at /etc/letsencrypt. You should make a
-   secure backup of this folder now. This configuration directory will
-   also contain certificates and private keys obtained by Certbot so
-   making regular backups of this folder is ideal.
+   Your account credentials have been saved in your Certbot configuration directory at /etc/letsencrypt. You should make a secure backup of this folder now.
+   You should make a secure backup of this folder now.
+   This configuration directory will also contain certificates and private keys obtained by Certbot so
+   This configuration directory will also contain certificates and private keys obtained by Certbot so making regular backups of this folder is ideal.
  - If you like Certbot, please consider supporting our work by:
 
-   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
-   Donating to EFF:                    https://eff.org/donate-le
+   Donating to ISRG / Let's Encrypt: https://letsencrypt.org/donate
+   Donating to EFF: https://eff.org/donate-le
 </pre>
 <p>
-  SSL証明書は以下のディレクトリの中に格納されます。
+  The SSL certificate will be stored in the following directory
 </p>
 <pre>
 /etc/letsencrypt/live
 </pre>
 <p>
-  見てみると、ドメインごとのディレクトリに分かれて格納されています。
+  If you look at it, you will see that it is stored in separate directories for each domain.
 </p>
-<pre>
+<pre> /etc/letsencrypt/live
 sudo ls /etc/letsencrypt/live
 </pre>
+<p>
+  Translated with www.DeepL.com/Translator (free version)
+</p>
 
   </div>
   <div class="bottom">
@@ -283,12 +286,9 @@ sudo ls /etc/letsencrypt/live
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

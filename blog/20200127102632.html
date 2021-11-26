@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Apacheの設定ファイルをテストする - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="Apacheの設定ファイルをテストするにはapachectlコマンドの「-t」オプションを使用します。">
+<title>Testing the Apache Configuration File - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="To test the Apache configuration file, use the "-t" option of the apachectl command.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200127102632.html">Apacheの設定ファイルをテストする - CentOS 7</a></h2>
+    <h2><a href="/blog/20200127102632.html">Testing the Apache Configuration File - CentOS 7</a></h2
 <p>
-  Apacheの設定ファイルをテストするにはapachectlコマンドの「-t」オプションを使用します。
+  To test the Apache configuration file, use the "-t" option of the apachectl command.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,29 +80,30 @@
 apachectl -t
 </pre>
 <p>
-  設定ファイルに間違いがない場合は以下のように出力されます。
+  If the configuration file is correct, the output will look like this
 </p>
 <pre>
+apachectl -t
 Syntax OK
 </pre>
-<h3>設定ファイルの試験が通れば確実に再起動できますか?</h3>
+<h3>If the configuration file passes the test, can we be sure to reboot? </H3>.
 <p>
-  設定ファイルの試験が通れば確実に再起動できるとは限りません。
+  If the configuration file passes the test, it does not guarantee that it will reboot.
 </p>
 <p>
-  間違っていることは確認できますが、確実に再起動できることは保証できないと考えてください。
+  We can confirm that it is wrong, but we cannot guarantee that it will reboot.
 </p>
 <p>
-  経験的には、SSLの設定周辺で、再起動できないことが多いです。
+  In my experience, it is often around the SSL settings that the reboot is not possible.
 </p>
 <p>
-  悲惨な事態にならないように、変更する前に必ず<a href="https://linux.perlclub.net/blog/20191203081250.html">cpコマンド</a>で、設定ファイルのバックアップを取っておきましょう。
+  To avoid a disastrous situation, be sure to back up your configuration file with the <a href="https://linux.perlclub.net/blog/20191203081250.html">cp command</a> before making any changes.
 </p>
 <pre>
 cp httpd.conf httpd.conf.20200203
 </pre>
 <p>
-  Apache設定ファイルへの変更は、すぐに戻せるように、ひとつづつ行うようにするのがコツです。たくさんの箇所を変更して、エラーが出た場合は、原因を特定するのが難しくなります。
+  The trick is to make changes to the Apache configuration file one at a time so that you can quickly revert to them. If you change a lot of places and get an error, it will be difficult to identify the cause.
 </p>
 
   </div>
@@ -159,12 +160,9 @@ cp httpd.conf httpd.conf.20200203
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

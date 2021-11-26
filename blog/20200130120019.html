@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Apacheのリバースプロキシの設定 - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="Apacheでのリバースプロキシの設定です。">
+<title> Apache reverse proxy settings --CentOS 7  - CentOS Server Construction</title>
+<meta name="description" content="Reverse proxy settings in Apache.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200130120019.html">Apacheのリバースプロキシの設定 - CentOS 7</a></h2>
+    <h2><a href="/blog/20200130120019.html"> Apache reverse proxy settings --CentOS 7 </a></h2>
 <p>
-  Apacheでのリバースプロキシの設定です。
+  Reverse proxy settings in Apache.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -77,29 +77,29 @@
 
 
 <pre>
-&lt;VirtualHost *:80&gt;
-  ServerName www.mydomain.example
+&lt;VirtualHost *: 80&gt;
+   ServerName www.mydomain.example
   
-  &lt;Proxy *&gt;
-    Require all granted
-  &lt;/Proxy&gt;
+   &lt;Proxy *&gt;
+     Require all granted
+   &lt;/Proxy&gt;
 
-  ProxyRequests Off
-  ProxyPreserveHost On
-  ProxyPass / http://localhost:10000/ keepalive=On
-  ProxyPassReverse / http://localhost:10000/
-  RequestHeader set X-Forwarded-Proto "https"
+   ProxyRequests Off
+   ProxyPreserveHost On
+   ProxyPass / http: // localhost: 10000 / keepalive = On
+   ProxyPassReverse / http: // localhost: 10000 /
+   RequestHeader set X-Forwarded-Proto "https"
 &lt;/VirtualHost&gt;
 </pre>
-<h3>リバースプロキシ設定の解説</h3>
-<h4>プロキシへのアクセスをすべて通す</h4>
+<h3> Explanation of reverse proxy settings </h3>
+<h4> Pass all access to the proxy </h4>
 <p>
-  デフォルトでは、プロキシへのアクセスを通さないようになっているので、通す設定を行います。
+  By default, access to the proxy is blocked, so set it to pass.
 </p>
 <pre>
-  &lt;Proxy *&gt;
-    Require all granted
-  &lt;/Proxy&gt;
+   &lt;Proxy *&gt;
+     Require all granted
+   &lt;/Proxy&gt;
 </pre>
 
   </div>
@@ -156,12 +156,9 @@
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

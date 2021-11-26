@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>apacheの設定ファイルを編集する - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="apacheの設定ファイルを編集しましょう。apacheのグローバルな設定ファイルの場所は以下です。">
+<title>Editing the configuration file for apache - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="Let's edit the configuration file for apache, the global location of the configuration file for apache is as follows">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200202102632.html">apacheの設定ファイルを編集する - CentOS 7</a></h2>
+    <h2><a href="/blog/20200202102632.html">Editing the configuration file for apache - CentOS 7</a></h2>
 <p>
-  apacheの設定ファイルを編集しましょう。apacheのグローバルな設定ファイルの場所は以下です。
+  Let's edit the configuration file for apache, the global location of the configuration file for apache is as follows
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,26 +80,26 @@
 /etc/httpd/conf/httpd.conf
 </pre>
 <p>
-  viで編集しましょう。
+  Let's edit it with vi.
 </p>
 <pre>
 sudo vi /etc/httpd/conf/httpd.conf
 </pre>
-<h3>apacheの設定を追加できるディレクトリ</h3>
+<h3>Directory where you can add your apache configuration</h3>
 <p>
-  グローバルな設定ファイルを編集するのは、少し怖いものです。
+  Editing global configuration files can be a bit scary.
 </p>
 <p>
-  apacheでは、追加の設定のための設定ディレクトリが準備されています。
+  In apache, a configuration directory is prepared for additional configuration.
 </p>
 <pre>
 /etc/httpd/conf/conf.d
 </pre>
 <p>
-  このディレクトリの中に、拡張子が「.conf」のファイルを配置すれば、自動的に読み込まれます。
+  If you place a file with the extension ".conf" in this directory, it will be loaded automatically.
 </p>
 <p>
-  たとえばバーチャルホスト用の設定ファイルを配置したとすると以下のようなファイル名にします。
+  For example, if you place a configuration file for a virtual host, the file name should look like the following
 </p>
 <pre>
 vhost.conf
@@ -159,12 +159,9 @@ vhost.conf
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>フォントファイルのディレクトリ - CentOS7, CentOS8 - CentOS Server Construction</title>
-<meta name="description" content="CentOSにおけるフォントファイルのディレクトリは、以下です。">
+<title>Font file directory - CentOS7, CentOS8 - CentOS Server Construction</title>
+<meta name="description" content="The directory of font files in CentOS is as follows">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200317114157.html">フォントファイルのディレクトリ - CentOS7, CentOS8</a></h3>
+    <h2><a href="/blog/20200317114157.html">Font file directory - CentOS7, CentOS8</a></h3>
 <p>
-  CentOSにおけるフォントファイルのディレクトリは、以下です。
+  The directory of font files in CentOS is as follows
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,30 +80,30 @@
 /usr/share/fonts
 </pre>
 <p>
-  フォントを追加するときは、このディレクトリの中にフォントファイルを配置します。サブディレクトリを作成しても大丈夫です。
+  When you add fonts, place the font files in this directory. You can also create a subdirectory.
 </p>
-<h3>すべてのフォントを表示する</h3>
+<h3>Show all fonts</h3>
 <p>
-  findコマンドを使うと、すべてのフォントを表示することができます。
+  You can use the find command to display all the fonts.
 </p>
 <pre>
 find /usr/share/fonts
 </pre>
-<h3>フォントを絞り込む</h3>
+<h3>Refine fonts</h3>
 <p>
-  grepコマンドを組み合わせると、フォントを絞り込むことができます。トゥルータイプフォントだけに絞り込んでみましょう。
+  Combined with the grep command, you can narrow down the fonts. Let's narrow it down to just true type fonts.
 </p>
 <pre>
 find /usr/share/fonts | grep ttf
 </pre>
 <p>
-  出力結果のサンプルです。
+  Here is a sample of the output result.
 </p>
-<pre>
+<pre> find /usr/share/fonts/japanese/TrueType
 /usr/share/fonts/japanese/TrueType/sazanami-gothic.ttf
 /usr/share/fonts/japanese/TrueType/sazanami-mincho.ttf
-/usr/share/fonts/ja/TrueType/kochi-mincho-subst.ttf
-/usr/share/fonts/ja/TrueType/kochi-gothic-subst.ttf
+/usr/share/fonts/en/TrueType/kochi-mincho-subst.ttf
+/usr/share/fonts/en/TrueType/kochi-gothic-subst.ttf
 /usr/share/fonts/bitstream-vera/VeraSe.ttf
 /usr/share/fonts/bitstream-vera/VeraBd.ttf
 /usr/share/fonts/bitstream-vera/Vera.ttf
@@ -170,12 +170,9 @@ find /usr/share/fonts | grep ttf
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

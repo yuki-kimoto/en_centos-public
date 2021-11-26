@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>redis-cli - RedisクライアントからRedisコマンドを実行する - CentOS Server Construction</title>
-<meta name="description" content="redis-cliは、Redisコマンドを実行するためのRedisクライアントです。Redisサーバーをインストールすると自動的にインストールされます。">
+<title>redis-cli - Run Redis commands from Redis client - CentOS Server Construction</title>
+<meta name="description" content="redis-cli is a Redis client for running Redis commands. It is automatically installed when you install the Redis server.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200720125704.html">redis-cli - RedisクライアントからRedisコマンドを実行する</a></h2>
+    <h2><a href="/blog/20200720125704.html">redis-cli - Run Redis commands from Redis client</a></h2>
 <p>
-  redis-cliは、Redisコマンドを実行するためのRedisクライアントです。<a href="/blog/20200525135533.html">Redisサーバーをインストール</a>すると自動的にインストールされます。
+  redis-cli is a Redis client for running Redis commands. It is automatically installed when you <a href="/blog/20200525135533.html">install the Redis server</a>.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,32 +80,32 @@
 redis-cli
 </pre>
 <p>
-  Redisクライアントが起動します。
+  This will start the Redis client.
 </p>
-<h3>Redisコマンド</h3>
+<h3>Redis command</h3>
 <p>
-  Redisコマンドを実行しましょう。
+  Run the Redis command.
 </p>
-<h4>PUBを実行するPUBLISH</h4>
+<h4>PUBLISH to run PUB</h4>
 <p>
-  PUBLISHコマンドを実行するとPUBを実行できます。PUBは、push通知に使用します。
-</p>
-<pre>
-PUBLISH チャンネル名 メッセージ
-</pre>
-<p>
-  チャンネル名もメッセージも単なる文字列です。複雑なデータ構造が必要な場合は、メッセージにJSONを使いましょう。
-</p>
-<p>
-  チャンネル名はすべてのプロセスでグローバルな名前空間ですので、重ならない名前を考えましょう。
+  Run the PUBLISH command to run PUB. PUB is used for push notifications.
 </p>
 <pre>
-PUBLISH  /foo/bar/baz?id=5 Hello
-PUBLISH  "/foo/bar/baz?id=5" "Hello"
-PUBLISH  "/foo/bar/baz?id=5" '{message : "Hello"}'
+PUBLISH channel name message
 </pre>
 <p>
-  文字列の囲みは、ダブルクォートとシングルクォートの両方が使えます。
+  Both the channel name and the message are just strings. If you need a complex data structure, use JSON for the message.
+</p>
+<p>
+  The channel name is a global namespace for all processes, so come up with a non-overlapping name.
+</p>
+<pre>
+PUBLISH /foo/bar/baz?id=5 Hello
+PUBLISH "/foo/bar/baz?id=5" "Hello"
+PUBLISH "/foo/bar/baz?id=5" '{message : "Hello"}'
+</pre>
+<p>
+  Both double and single quotes can be used to enclose the string.
 </p>
 
   </div>
@@ -162,12 +162,9 @@ PUBLISH  "/foo/bar/baz?id=5" '{message : "Hello"}'
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

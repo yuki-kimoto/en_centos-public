@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Apacheの状態を確認する - CentOS 7 - CentOS Server Construction</title>
-<meta name="description" content="Apacheの状態を確認するには「systemctl status httpd」を使用します。">
+<title>Checking the Status of Apache - CentOS 7 - CentOS Server Construction</title>
+<meta name="description" content="To check the status of Apache, use "systemctl status httpd".">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200129102632.html">Apacheの状態を確認する - CentOS 7</a></h2>
+    <h2><a href="/blog/20200129102632.html">Checking the Status of Apache - CentOS 7</a></h2
 <p>
-  Apacheの状態を確認するには「systemctl status httpd」を使用します。
+  To check the status of Apache, use "systemctl status httpd".
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -80,11 +80,12 @@
 sudo systemctl status httpd
 </pre>
 <p>
-  状態の出力結果のサンプルです。実行されているので「active (running)」と表示されています。
+  Here is a sample of the status output. It shows "active (running)" because it is running.
 </p>
 <pre>
+[root@vs01 conf.conf
 [root@vs01 conf.d]# systemctl status httpd
-● httpd.service - The Apache HTTP Server
+httpd.service - The Apache HTTP Server
    Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
    Active: active (running) since Mon 2020-02-03 14:57:03 JST; 1h 46min ago
      Docs: man:httpd(8)
@@ -92,7 +93,7 @@ sudo systemctl status httpd
   Process: 24409 ExecStop=/bin/kill -WINCH ${MAINPID} (code=exited, status=0/SUCCESS)
   Process: 25738 ExecReload=/usr/sbin/httpd $OPTIONS -k graceful (code=exited, status=0/SUCCESS)
  Main PID: 24414 (httpd)
-   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
+   Status: "Total requests: 0; Current requests/sec: 0; Current traffic: 0 B/sec"
    CGroup: /system.slice/httpd.service
            tq24414 /usr/sbin/httpd -DFOREGROUND
            tq25740 /usr/sbin/httpd -DFOREGROUND
@@ -123,7 +124,7 @@ Feb 03 16:34:07 vs01 systemd[1]: Reloaded The Apache HTTP Server.
 Feb 03 16:42:21 vs01 systemd[1]: Reloaded The Apache HTTP Server.
 </pre>
 <p>
-  一番下には、起動・再起動・停止した時刻が表示されています。
+  At the bottom, you can see the times when it was started, restarted, and stopped.
 </p>
 
   </div>
@@ -180,12 +181,9 @@ Feb 03 16:42:21 vs01 systemd[1]: Reloaded The Apache HTTP Server.
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>

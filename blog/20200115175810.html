@@ -36,8 +36,8 @@
 
   gtag('config', 'G-NREC71BDNY');
 </script>
-<title>Apacheのインストールと起動・停止・自動起動の設定 - CentOS7 - CentOS Server Construction</title>
-<meta name="description" content="CentOS7でのApacheのインストールと起動・停止・自動起動の設定の手順です。">
+<title> Apache installation and start / stop / auto start settings --CentOS7  - CentOS Server Construction</title>
+<meta name="description" content="This is the procedure for installing Apache on CentOS7 and setting start / stop / automatic start.">
   </head>
   <body>
     <div class="container">
@@ -56,9 +56,9 @@
     
   </div>
   <div class="middle">
-    <h2><a href="/blog/20200115175810.html">Apacheのインストールと起動・停止・自動起動の設定 - CentOS7</a></h2>
+    <h2><a href="/blog/20200115175810.html"> Apache installation and start / stop / auto start settings --CentOS7 </a></h2>
 <p>
-  CentOS7でのApacheのインストールと起動・停止・自動起動の設定の手順です。
+  This is the procedure for installing Apache on CentOS7 and setting start / stop / automatic start.
 </p>
 <div style="width:calc(100% - 30px);margin:10px auto;">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
@@ -76,66 +76,66 @@
 </div>
 
 
-<h3>Apacheのインストール</h3>
+<h3> Apache installation </h3>
 <p>
-  Apacheのインストールは、yumコマンドを使って行います。
+  Install Apache using the yum command.
 </p>
 <pre>
-# Apacheのインストール
+#Install Apache
 sudo yum -y install httpd
 </pre>
-<h3>Apacheのバージョン確認</h3>
+<h3> Apache version check </h3>
 <p>
-  Apacheのバージョンを確認してみましょう。
+  Let's check the version of Apache.
 </p>
 <pre>
 httpd -version
 </pre>
 <p>
-  Apacheのバージョンは、2.4.6でした。
+  The version of Apache was 2.4.6.
 </p>
 <pre>
-Server version: Apache/2.4.6 (CentOS)
-Server built:   Aug  8 2019 11:41:18
+Server version: Apache / 2.4.6 (CentOS)
+Server built: Aug 8 2019 11:41:18
 </pre>
-<h3>Apacheの自動起動の設定</h3>
+<h3> Apache auto-start settings </h3>
 <p>
-  CentOS7を起動したときにApacheが自動起動するようにしておきます。Apacheの自動起動の設定をするにはsystemctlコマンドの「enable」を使用します。
+  Make sure Apache starts automatically when you start CentOS7. Use the systemctl command "enable" to set Apache to start automatically.
 </p>
 <pre>
-# Apacheの自動起動の設定
+#Apache autostart settings
 sudo systemctl enable httpd.service
 </pre>
-<h3>Apacheの起動</h3>
+<h3> Start Apache </h3>
 <p>
-  Apacheを起動します。Apacheを起動するにはsystemctlコマンドの「start」を使用します。
+  Start Apache. To start Apache, use the systemctl command "start".
 </p>
 <pre>
-# Apacheの起動
+#Start Apache
 sudo systemctl start httpd.service
 </pre>
-<h3>Apacheの停止</h3>
+<h3> Stop Apache </h3>
 <p>
-  Apacheを停止するにはsystemctlコマンドの「stop」を使用します。
+  Use the systemctl command "stop" to stop Apache.
 </p>
 <pre>
-# Apacheの停止
+# Stop Apache
 sudo systemctl stop httpd.service
 </pre>
-<h3>Apacheの再起動</h3>
+<h3> Restart Apache </h3>
 <p>
-  Apacheを再起動するにはsystemctlコマンドの「restart」を使用します。
+  Use the systemctl command "restart" to restart Apache.
 </p>
 <pre>
-# Aapcheの再起動
+#Restart Aapche
 sudo systemctl restart httpd.service
 </pre>
-<h3>HTTPS接続を可能にするには?</h3>
+<h3> How to enable HTTPS connection? </H3>
 <p>
-  HTTPS接続は、SSL接続ですので、mod_sslが必要です。以下の記事を参考にしてください。
+  The HTTPS connection is an SSL connection, so mod_ssl is required. Please refer to the following articles.
 </p>
 <ul>
-  <li><a href="/blog/20200112182708.html">CentOS 7のApacheでHTTPS接続のためにmod_sslをインストールする</li>
+  <li> <a href="/blog/20200112182708.html"> Install mod_ssl for HTTPS connection with Apache on CentOS 7 </li>
 </ul>
 
   </div>
@@ -192,12 +192,9 @@ sudo systemctl restart httpd.service
       </div>
       <div class="footer">
         <div class="perlri_link">
-  <a rel="nofollow" href="https://perlclub.net">Perl Club</a>
+  <a rel="nofollow" href="https://perlclub.net/en">Perl Club</a>
 </div>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4525414114581084"
-     crossorigin="anonymous"></script>
-     
       </div>
     </div>
   </body>
